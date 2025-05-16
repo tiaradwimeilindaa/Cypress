@@ -1,23 +1,29 @@
 class LoginPage {
   visit() {
-    cy.visit('/')
+    cy.visit('https://opensource-demo.orangehrmlive.com/');
+  }
+  
+  getUsernameInput() {
+    return cy.get('input[name="username"]');
   }
 
-  enterUsername(username) {
-    cy.get('input[name="username"]').type(username)
+  getPasswordInput() {
+    return cy.get('input[name="password"]');
   }
 
-  enterPassword(password) {
-    cy.get('input[name="password"]').type(password)
+  getLoginButton() {
+    return cy.get('button[type="submit"]');
   }
 
-  clickLogin() {
-    cy.get('button[type="submit"]').click()
+  login(username, password) {
+    this.getUsernameInput().type(username);
+    this.getPasswordInput().type(password);
+    this.getLoginButton().click();
   }
 
-  getDashboardText() {
-    return cy.get('.oxd-topbar-header-breadcrumb > h6')
+  getDashboardTitle() {
+    return cy.get('.oxd-topbar-header-title');
   }
 }
 
-export default LoginPage
+export default LoginPage;
